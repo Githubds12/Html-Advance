@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+
+    body{
+        background-color: #333;
+        color:white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    canvas{
+        border-radius: 5px;
+        background-color: #ffffff;
+        /* width: 80%;
+        height: 80%; */
+    }
+</style>
+<body>
+
+    <canvas id="canvas" width="1200px" height="550px"></canvas>
+    
+</body>
+<script>
+    const canvas=document.getElementById('canvas');
+    const ctx=canvas.getContext('2d');
+
+    //smiley face
+    ctx.beginPath();
+    ctx.arc(300, 300, 200, 0, Math.PI * 2, false); // Outer circle
+    ctx.fillStyle = 'yellow';
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    //eyes
+    ctx.beginPath();
+    ctx.arc(220, 240, 20, 0, Math.PI * 2, false); // Left eye
+    ctx.fillStyle = 'black';
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(380, 240, 20, 0, Math.PI * 2, false); // Right eye
+    ctx.fillStyle = 'black';
+    ctx.fill();
+
+    //mouth
+    ctx.beginPath();
+    ctx.arc(300, 350, 100, 0, Math.PI, false); // Mouth
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = 'black';
+    ctx.lineWidth = 5;
+    ctx.stroke();
+    ctx.fill();
+
+    //5 teeth
+    //1st teeth
+    ctx.beginPath();
+    ctx.moveTo(223, 350);
+    ctx.lineTo(253, 350);
+    ctx.lineTo(253, 370);
+    ctx.lineTo(223, 370);
+    ctx.closePath();
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    //2nd teeth
+    ctx.beginPath();
+    ctx.moveTo(254, 350);
+    ctx.lineTo(284, 350);
+    ctx.lineTo(284, 370);
+    ctx.lineTo(254, 370);
+    ctx.closePath();
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    //3rd teeth
+    ctx.beginPath();
+    ctx.moveTo(285, 350);
+    ctx.lineTo(315, 350);
+    ctx.lineTo(315, 370);
+    ctx.lineTo(285, 370);
+    ctx.closePath();
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    //4th teeth
+    ctx.beginPath();
+    ctx.moveTo(316, 350);
+    ctx.lineTo(346, 350);
+    ctx.lineTo(346, 370);
+    ctx.lineTo(316, 370);
+    ctx.closePath();
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    //5th teeth
+    ctx.beginPath();
+    ctx.moveTo(347, 350);
+    ctx.lineTo(377, 350);
+    ctx.lineTo(377, 370);
+    ctx.lineTo(347, 370);
+    ctx.closePath();
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    
+  
+  
+
+     
+</script>
+</html>
