@@ -95,7 +95,7 @@
 </body>
 <script>
     function showCart() {
-        let cart = localStorage.getItem("cart");
+        let cart = sessionStorage.getItem("cart");
 
         let output = document.getElementById("output");
         if (!cart) {
@@ -119,7 +119,7 @@
     }
 
     function addProductToCart() {
-        let cart = localStorage.getItem("cart");
+        let cart = sessionStorage.getItem("cart");
         if (cart == null) {
             cart = [];
         } else {
@@ -135,7 +135,7 @@
         };
 
         cart.push(product);
-        localStorage.setItem("cart", JSON.stringify(cart));
+        sessionStorage.setItem("cart", JSON.stringify(cart));
         showCart();
     }
     showCart();
