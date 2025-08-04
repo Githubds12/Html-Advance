@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Storage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            flex-direction: column;
+        }
+
+        .container:hover {
+            background-color: #555;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transition: background-color 0.3s ease;
+        }
+
+        input:hover {
+            background-color: #555;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #output {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #f0f0f0;
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <input placeholder="Enter product name" type="text" id="productname" />
+        <input placeholder="Enter product price" type="number" id="productprice" />
+        <button onclick="addProductToCart()">Add to cart</button>
+
+        <div id="output"></div>
+    </div>
+
+</body>
+<script>
+    function showCart() {
+        let cart = localStorage.getItem("cart");
+
+        let output = document.getElementById("output");
+        if (!cart) {
+            output.innerHTML = "<h2>No items in cart</h2>";
+            return;
+        }
+
+        cart = JSON.parse(cart);
+
+        if (cart.length === 0) {
+            output.innerHTML = "<h2>No items in cart</h2>";
+            return;
+        } else {
+            let table = "<table style='width:100%; border-collapse: collapse;'>";
+            table += "<tr><th>Product Name</th><th>Price</th></tr>";
+            for (let i = 0; i < cart.length; i++) {
+                table += "<tr>" + "<td>" + cart[i].name + "</td>" + "<td>" + cart[i].price + "</td>" + "</tr>";
+            }
+            output.innerHTML = table;
+        }
+    }
+
+    function addProductToCart() {
+        let cart = localStorage.getItem("cart");
+        if (cart == null) {
+            cart = [];
+        } else {
+            cart = JSON.parse(cart);
+        }
+
+        let productName = document.getElementById("productname").value;
+        let productPrice = document.getElementById("productprice").value;
+
+        let product = {
+            name: productName,
+            price: productPrice
+        };
+
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        showCart();
+    }
+    showCart();
+</script>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop API</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #333;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    img {
+        border-radius: 5px;
+        background-color: #4c1212;
+        cursor: move;
+    }
+
+    #container {
+        position: absolute;
+        top: 120px;
+        left: 120px;
+        width: 300px;
+        height: 300px;
+        padding:10px;
+        border: 2px dashed #ccc;
+    }
+</style>
+
+<body>
+
+    
+    <!-- <canvas id="canvas" width="1200px" height="500px">
+        
+    </canvas> -->
+    <img id ="myImage" src="./MyPhoto-removebg-preview.png" draggable="true" style="cursor:move;width: 200px;height: 250px;" ondragstart="drag(event)"/>
+    
+    <div id="container" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+    
+</body>
+<script>
+    function allowDrop(e){
+        // alert(e.target.id);
+        e.preventDefault();
+    }
+    function drag(e){
+        // alert(e.target.id);
+        e.dataTransfer.setData("myimagetotransfer", e.target.id);
+    }
+    function drop(e){
+        // alert(e.target.id);
+        e.preventDefault();
+        var data = e.dataTransfer.getData("myimagetotransfer");
+        var draggedElement = document.getElementById(data);
+        e.target.appendChild(draggedElement);
+    }
+</script>
+
+</html>

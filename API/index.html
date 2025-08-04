@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoLocation</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #333;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    canvas {
+        border-radius: 5px;
+        background-color: #9b9b9b;
+        /* width: 80%;
+        height: 80%; */
+    }
+</style>
+
+<body>
+
+    <canvas id="canvas" width="1200px" height="500px">
+
+    </canvas>
+    <button onclick="getUserLocation()" style="position: absolute; top: 120px; left: 120px; z-index: 1;">
+        Get Location
+    </button>
+    <div id="location" style="position: absolute; top: 200px; left: 120px; color: white; z-index: 1;">
+        Location will be displayed here.
+</body>
+<script>
+    function getUserLocation() {
+        //    alert("This feature is not implemented in this example.");
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        // console.log(position);
+        document.getElementById("location").innerHTML = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+    }
+
+    function showError(error) {
+        // console.log(error);
+        document.getElementById("location").innerHTML = "Error: " + error.message;
+    }
+</script>
+
+</html>

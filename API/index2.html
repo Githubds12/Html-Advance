@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File API</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #333;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+</style>
+
+<body>
+    <input type="file" id="fileInput" onchange="displayFileData()"/>     
+    <div id="output"></div>
+</body>
+<script>
+    function displayFileData(){
+        // alert("Hello World");
+        var fileInput = document.getElementById("fileInput");
+        // alert(fileInput);
+        // console.log(fileInput.files);
+        var fileData= fileInput.files[0];
+        var output = document.getElementById("output");
+
+        output.innerHTML = `
+            <h2>File Name: ${fileData.name}</h2>
+            <h3>File Type: ${fileData.type}</h3>
+            <h3>File Size: ${fileData.size} bytes</h3>
+            <h3>Last Modified: ${new Date(fileData.lastModified).toLocaleDateString()}</h3>
+        `;
+    }
+</script>
+
+</html>
